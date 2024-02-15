@@ -8,8 +8,8 @@ st.info("2023年7月に500万円で始めたFX投資の成績を可視化する�
 
 df = pd.read_csv("data/performance.csv", parse_dates=["Date"], index_col=0)
 
-st.metric(label="総資産", value="¥{:,}".format(int(df.tail(1)["Asset"])), delta="¥{:,}".format(int(df.tail(1)["Asset"]) - int(df.head(1)["Asset"])))
-st.metric(label="口座清算価値", value="¥{:,}".format(int(df.tail(1)["LiquidationValue"])), delta="¥{:,}".format(int(df.tail(1)["LiquidationValue"]) - int(df["LiquidationValue"].dropna().head(1))))
+st.metric(label="総資産", value="¥{:,}".format(int(df.iloc[-1]["Asset"])), delta="¥{:,}".format(int(df.iloc[-1]["Asset"]) - int(df.iloc[1]["Asset"])))
+st.metric(label="口座清算価値", value="¥{:,}".format(int(df.iloc[-1]["LiquidationValue"])), delta="¥{:,}".format(int(df.iloc[-1]["LiquidationValue"]) - int(df["LiquidationValue"].dropna().iloc[0])))
 
 
 st.text("総資産 - Asset[JPY]")
